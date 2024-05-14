@@ -198,6 +198,12 @@ bool Cursor::freeTyping(char key) {
         return true;
     }
 
+    //Some systems have this character before arrow and control keys
+    //The number assigned to this "key" is 0
+    if(key == '\000') {
+        control_code_entered = true;
+    }
+
     switch(key) {
         
         case ARROW_CONTROL_KEY:
@@ -236,6 +242,12 @@ bool Cursor::typing(char key) {
 
     if(detectEnter(key)) {
         return true;
+    }
+
+    //Some systems have this character before arrow and control keys
+    //The number assigned to this "key" is 0
+    if(key == '\000') {
+        control_code_entered = true;
     }
 
     switch(key) {
